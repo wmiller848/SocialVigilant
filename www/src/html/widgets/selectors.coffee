@@ -2,11 +2,11 @@
 #  William C Miller
 #
 
-class window.ToolBarWidget extends window.Malefic.View
+class window.SelectorsWidget extends window.Malefic.View
 
-  Context: '[data-id="sv:context:ui:toolbar"]'
+  Context: '[data-id="sv:context:ui:interactions:selectors"]'
 
-  Template: 'tmpl/toolbar.hbs'
+  Template: 'tmpl/selectors.hbs'
 
   Events:
     'hide:widget:toolbar': 'hide'
@@ -15,11 +15,11 @@ class window.ToolBarWidget extends window.Malefic.View
     'unlock:widget:toolbar': 'unlock'
 
   Data:
-    'title': 'toolbar'
+    'title': 'selectors'
 
-  # Helpers:
-  #   'widget:toolbar': (widget) ->
-  #     action = "window._www.Widgets['#{widget.template}']"
+  Helpers:
+    'log': ->
+      @Log(arguments)
 
   Actions: ->
     'default': =>
@@ -36,13 +36,11 @@ class window.ToolBarWidget extends window.Malefic.View
     'account': '[data-id="toolbar:account"]'
 
   Loaded: ->
-    console.log('Loaded')
-    @Log('ToolBarWidget Widget Loaded')
+    @Log('SelectorsWidget Widget Loaded')
     #@Hide()
 
   OnBind: ->
-    console.log('OnBind')
-    @Log('ToolBarWidget Binded Widget')
+    @Log('SelectorsWidget Binded Widget')
 
     @Elements.fullscreen?.on('click', =>
       @Actions['fullscreen']()

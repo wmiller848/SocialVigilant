@@ -21,11 +21,11 @@ body, html {
   /*cursor: move;*/
 }
 
-a, u {
-    padding: 0;
-    text-decoration: none;
-    color: inherit;
-}
+/*a, u {
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+}*/
 
 canvas {
   background-color: #000000;
@@ -35,7 +35,7 @@ canvas {
 }
 
 .graph {
-  height: 25em;
+  margin: auto;
 }
 
 .ui_container {
@@ -50,7 +50,6 @@ canvas {
   vertical-align: top;
   border: none;
   overflow-x: hidden;
-  pointer-events: none;
 }
 
 .ui_layer-0 {
@@ -83,7 +82,6 @@ canvas {
 
 .toolbar {
   width: 100%;
-  /*height: 100%;*/
 
   border-width: 0.5px;
   border-style: solid;
@@ -196,6 +194,12 @@ canvas {
 .pure-button {
   border-radius: 7px 7px 7px 7px;
   -webkit-border-radius: 7px 7px 7px 7px;
+}
+
+.pure-menu-link {
+  /*background-color: #FFFFFF;*/
+  /*border-radius: 7px 7px 0px 0px;*/
+  /*-webkit-border-radius: 7px 7px 0px 0px;*/
 }
 
 .icon {

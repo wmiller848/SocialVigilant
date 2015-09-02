@@ -13,3 +13,8 @@ class window.Core
     @widget.realtime.Ready( ->
       console.log('Realtime Loaded')
     )
+
+    @widget.interactions = new window.InteractionsWidget()
+    @widget.interactions.Ready( ->
+      console.log('Interactions Loaded')
+    )

@@ -2,11 +2,11 @@
 #  William C Miller
 #
 
-class window.RealtimeWidget extends window.Malefic.View
+class window.AccountsWidget extends window.Malefic.View
 
-  Context: '[data-id="sv:context:ui:realtime"]'
+  Context: '[data-id="sv:context:ui:interactions:accounts"]'
 
-  Template: 'tmpl/realtime.hbs'
+  Template: 'tmpl/accounts.hbs'
 
   Events:
     'hide:widget:toolbar': 'hide'
@@ -15,7 +15,7 @@ class window.RealtimeWidget extends window.Malefic.View
     'unlock:widget:toolbar': 'unlock'
 
   Data:
-    'title': 'toolbar'
+    'title': 'accounts'
 
   Helpers:
     'log': ->
@@ -36,13 +36,11 @@ class window.RealtimeWidget extends window.Malefic.View
     'account': '[data-id="toolbar:account"]'
 
   Loaded: ->
-    console.log('Loaded')
-    @Log('RealtimeWidget Widget Loaded')
+    @Log('AccountsWidget Widget Loaded')
     #@Hide()
 
   OnBind: ->
-    console.log('OnBind')
-    @Log('RealtimeWidget Binded Widget')
+    @Log('AccountsWidget Binded Widget')
 
     @Elements.fullscreen?.on('click', =>
       @Actions['fullscreen']()
