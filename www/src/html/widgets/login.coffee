@@ -49,11 +49,47 @@ class window.LoginWidget extends window.Malefic.View
 
   OnBind: ->
     @Log('LoginWidget Binded Widget')
-    console.log(@)
     @Show(@container)
 
-    console.log(@)
-    @Elements.submit?.on('submit', (e) =>
-      console.log(e, @)
+    @Elements.submit.on('click', (e) =>
+      console.log(e)
       e.preventDefault()
+
+      username = @Elements.username.value
+      password = @Elements.password.value
+      # We transform the string into an arraybuffer.
+      buf = new TextEncoder("utf-8").encode(password)
+      hash_promise = crypto.subtle.digest("SHA-256", buf)
+      hash_promise.then((hash) ->
+        console.log('Things....')
+        console.log(hash)
+      )
+
+      if window._fake is true
+        @_onLogin(
+          pubkey: null,
+          userid: @Random(128),
+          username: username,
+          accounts: [
+            {
+              network: 'facebook',
+              handle: 'jwiggles'
+            },
+            {
+              network: 'twitter',
+              handle: 'silentwiggles'
+            }
+          ]
+        )
+      else
+        console.log("Do AJAX stuff")
     )
+
+  _onLogin: (user) ->
+    console.log(user)
+    overlay = @Q('[data-id="sv:context:ui:window"]')
+    @Hide(overlay)
+    @Broker.Trigger('widget:main')
+
+  _onCreate: (user) ->
+    console.log(user)

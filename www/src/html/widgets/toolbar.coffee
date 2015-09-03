@@ -42,6 +42,10 @@ class window.ToolBarWidget extends window.Malefic.View
   OnBind: ->
     @Log('ToolBarWidget Binded Widget')
 
+    @Broker.On('widget:main', =>
+      console.log('!!MAIN!!')
+    )
+
     @Elements.fullscreen?.on('click', =>
       @Actions['fullscreen']()
     )
