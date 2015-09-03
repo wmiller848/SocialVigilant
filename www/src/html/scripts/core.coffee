@@ -4,6 +4,11 @@ class window.Core
   constructor:  ->
     @widget = {}
 
+    @widget.login = new window.LoginWidget()
+    @widget.login.Ready( ->
+      console.log('Login Loaded')
+    )
+
     @widget.toolbar = new window.ToolBarWidget()
     @widget.toolbar.Ready( ->
       console.log('Toolbar Loaded')

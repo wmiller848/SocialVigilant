@@ -234,10 +234,10 @@ canvas {
 }
 
 .ui_window {
-  background-color: #000000;
-  opacity: 0.25;
+  background-color: #FFFFFF;
+  /*opacity: 0.45;*/
   height: 100%;
-  pointer-events: none;
+  pointer-events: all;
 }
 
 .space_top_50 {
