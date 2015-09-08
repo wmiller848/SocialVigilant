@@ -6,7 +6,7 @@
 body, html {
   width : 100%;
   height: 100%;
-  background-color: #008fb6;
+  background-color: #F0F0F5;
   padding: 0;
   margin: 0;
   border: none;
@@ -28,7 +28,7 @@ body, html {
 }*/
 
 canvas {
-  background-color: #000000;
+  background-color: #FFFFFF;
   border: none;
   width: 100%;
   height: auto;
@@ -200,6 +200,12 @@ canvas {
   /*background-color: #FFFFFF;*/
   /*border-radius: 7px 7px 0px 0px;*/
   /*-webkit-border-radius: 7px 7px 0px 0px;*/
+}
+
+.collections {
+  background-color: grey;
+  border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
 }
 
 .icon {

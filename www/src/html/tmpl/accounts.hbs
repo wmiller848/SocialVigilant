@@ -1,17 +1,15 @@
 <div class="pure-menu pure-menu-horizontal" style="height:2em;">
-    <ul class="pure-menu-list" style="width:100%;pointer-events:none;">
-        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover" style="width:100%;pointer-events:none;">
-            <a href="#" id="menuLink2" class="pure-menu-link" style="pointer-events:all;">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink2" class="pure-menu-link">
               <p style="display:inline;overflow:hidden;text-overflow:ellipsis;">
-                Accounts - Batman, Yeahcat, Wowzuuz, Godzilla99, DJFuckz
+                Accounts - {{AccountsList}}
               </p>
             </a>
-            <ul class="pure-menu-children" style="width:100%;pointer-events:none;">
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link" style="pointer-events:all;">Batman</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link" style="pointer-events:all;">Yeahcat</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link" style="pointer-events:all;">Wowzuuz</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link" style="pointer-events:all;">Godzilla99</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link" style="pointer-events:all;">DJFuckz</a></li>
+            <ul class="pure-menu-children">
+              {{#each this.Accounts}}
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">{{handle}}</a></li>
+              {{/each}}
             </ul>
         </li>
     </ul>

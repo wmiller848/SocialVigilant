@@ -16,6 +16,8 @@ class window.SelectorsWidget extends window.Malefic.View
 
   Data:
     'title': 'selectors'
+    'Model':
+      'Selectors': null
 
   Helpers:
     'log': ->
@@ -38,6 +40,18 @@ class window.SelectorsWidget extends window.Malefic.View
   Loaded: ->
     @Log('SelectorsWidget Widget Loaded')
     #@Hide()
+
+    @Broker.On('widget:selectors:set', (selectors) =>
+      console.log('!!Selectors:Set!!', selectors)
+      @Data.Model.Selectors = selectors
+      list = _.reduce(selectors, (memo, selector) ->
+        memo.push(selector.key)
+        memo
+      , [])
+      @Data.Model.SelectorsList = list.toString()
+      @Data.Model.SelectorsList = @Data.Model.SelectorsList.substring(0,9) + '..' if @Data.Model.SelectorsList.length > 9
+      @Render()
+    )
 
   OnBind: ->
     @Log('SelectorsWidget Binded Widget')

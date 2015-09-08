@@ -39,12 +39,20 @@ class window.ToolBarWidget extends window.Malefic.View
     @Log('ToolBarWidget Widget Loaded')
     #@Hide()
 
+    @Broker.On('widget:main', (user) =>
+      console.log('!!MAIN!!', user)
+      @Broker.Trigger('widget:accounts:set', user.accounts)
+      @Broker.Trigger('widget:selectors:set', user.selectors)
+      stats =
+        hits_per_minute: 0,
+        total_hits: 0,
+        interactions_per_day: 0,
+        total_interactions: 0
+      @Broker.Trigger('widget:realtimestats:set', stats)
+    )
+
   OnBind: ->
     @Log('ToolBarWidget Binded Widget')
-
-    @Broker.On('widget:main', =>
-      console.log('!!MAIN!!')
-    )
 
     @Elements.fullscreen?.on('click', =>
       @Actions['fullscreen']()

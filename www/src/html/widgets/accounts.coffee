@@ -15,7 +15,9 @@ class window.AccountsWidget extends window.Malefic.View
     'unlock:widget:toolbar': 'unlock'
 
   Data:
-    'title': 'accounts'
+    'Title': 'accounts',
+    'Model':
+      'Accounts': null
 
   Helpers:
     'log': ->
@@ -38,6 +40,18 @@ class window.AccountsWidget extends window.Malefic.View
   Loaded: ->
     @Log('AccountsWidget Widget Loaded')
     #@Hide()
+
+    @Broker.On('widget:accounts:set', (accounts) =>
+      console.log('!!Accounts:Set!!', accounts)
+      @Data.Model.Accounts = accounts
+      list = _.reduce(accounts, (memo, account) ->
+        memo.push(account.handle)
+        memo
+      , [])
+      @Data.Model.AccountsList = list.toString()
+      @Data.Model.AccountsList = @Data.Model.AccountsList.substring(0,9) + '..' if @Data.Model.AccountsList.length > 9
+      @Render()
+    )
 
   OnBind: ->
     @Log('AccountsWidget Binded Widget')

@@ -2,11 +2,11 @@
 #  William C Miller
 #
 
-class window.InteractionsWidget extends window.Malefic.View
+class window.CollectionsWidget extends window.Malefic.View
 
-  Context: '[data-id="sv:context:ui:interactions"]'
+  Context: '[data-id="sv:context:ui:interactions:collections"]'
 
-  Template: 'tmpl/interactions.hbs'
+  Template: 'tmpl/collections.hbs'
 
   Events:
     'hide:widget:toolbar': 'hide'
@@ -15,7 +15,9 @@ class window.InteractionsWidget extends window.Malefic.View
     'unlock:widget:toolbar': 'unlock'
 
   Data:
-    'title': 'interactions'
+    'Title': 'collections',
+    'Model':
+      'Collections': new Array(10)
 
   Helpers:
     'log': ->
@@ -36,26 +38,15 @@ class window.InteractionsWidget extends window.Malefic.View
     'account': '[data-id="toolbar:account"]'
 
   Loaded: ->
-    @Log('InteractionsWidget Widget Loaded')
+    @Log('CollectionsWidget Widget Loaded')
     #@Hide()
 
+    @Broker.On('widget:collections:set', (accounts) =>
+      console.log('!!Collections:Set!!', accounts)
+    )
+
   OnBind: ->
-    @Log('InteractionsWidget Binded Widget')
-
-    @selectors = new window.SelectorsWidget()
-    @selectors.Ready( ->
-      console.log('Selectors Loaded')
-    )
-
-    @accounts = new window.AccountsWidget()
-    @accounts.Ready( ->
-      console.log('Accounts Loaded')
-    )
-
-    @collections = new window.CollectionsWidget()
-    @collections.Ready( ->
-      console.log('Collections Loaded')
-    )
+    @Log('CollectionsWidget Binded Widget')
 
     @Elements.fullscreen?.on('click', =>
       @Actions['fullscreen']()
