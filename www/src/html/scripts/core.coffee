@@ -50,7 +50,8 @@ class window.Core extends window.Malefic.Core
             running_hits = 0
           total_hits += running_hits
 
-          running_interactions += next * up_or_down * 0.25 * Math.random()
+          current_interactions = next * up_or_down * 0.25 * Math.random()
+          running_interactions += current_interactions
           if running_interactions < 0
             running_interactions = 0
           total_interactions += running_interactions
@@ -69,6 +70,23 @@ class window.Core extends window.Malefic.Core
 
           @Broker.Trigger('data:realtimestats:set', stats)
           @Broker.Trigger('data:realtime:set', hits: running_hits * (time_window / time_slice))
+
+          networks = ['images/twitter.png', 'images/facebook.png']
+          concaters = ['', '-', '_', 'x', '']
+          names_p1 = ['Llama', 'Bob', 'Shitz', 'Cobra', 'Grim', 'Nicknak', 'Tits']
+          names_p2 = ['Of', 'For', 'Warrior', 'Hero', 'Evil', 'Quest', 'So']
+          names_p3 = ['Doom', 'Hire', 'McGee', 'Man', 'Boss', 'Seeker', 'Big']
+
+          if current_interactions > 0
+            console.log('wtf..')
+            @Broker.Trigger('data:collections:add', {
+              network_icon: networks[parseInt(Math.random() * networks.length)],
+              handle: names_p1[parseInt(Math.random() * names_p1.length)] + concaters[parseInt(Math.random() * concaters.length)] +
+                      names_p2[parseInt(Math.random() * names_p2.length)] + concaters[parseInt(Math.random() * concaters.length)] +
+                      names_p3[parseInt(Math.random() * names_p3.length)],
+              content: @Random(Math.random() * 256)
+            })
+
         , time_slice)
     )
 
