@@ -42,7 +42,6 @@ class window.RealtimeStatsWidget extends window.Malefic.View
     #@Hide()
 
     @Broker.On('data:realtimestats:config', (settings) =>
-      console.log('WTF')
       @Data.Model.time_window = settings.time_window
       @Data.Model.time_window_name = settings.time_window_name
     )

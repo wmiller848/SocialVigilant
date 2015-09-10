@@ -40,7 +40,7 @@ class window.ToolBarWidget extends window.Malefic.View
     #@Hide()
 
     @Broker.On('widget:main', (user) =>
-      console.log('!!MAIN!!', user)
+      # console.log('!!MAIN!!', user)
       @Broker.Trigger('widget:accounts:set', user.accounts)
       @Broker.Trigger('widget:selectors:set', user.selectors)
       stats =

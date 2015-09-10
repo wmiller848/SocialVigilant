@@ -16,8 +16,9 @@ class window.CollectionsWidget extends window.Malefic.View
 
   Data:
     'Title': 'collections',
+    'Collections': [],
     'Model':
-      'Collections': []
+      'Collections': null
 
   Helpers:
     'log': ->
@@ -42,14 +43,16 @@ class window.CollectionsWidget extends window.Malefic.View
     #@Hide()
 
     @Broker.On('data:collections:set', (collections) =>
-      console.log('!!Collections:Set!!', collections)
-      @Data.Model.Collections = collections
+      # console.log('!!Collections:Set!!', collections)
+      @Data.Collections.push(collection)
+      @Data.Model.Collections = @Data.Collections.reverse()
       @Render()
     )
 
     @Broker.On('data:collections:add', (collection) =>
-      console.log('!!Collections:Add!!', collection)
-      @Data.Model.Collections.push(collection)
+      # console.log('!!Collections:Add!!', collection)
+      @Data.Collections.push(collection)
+      @Data.Model.Collections = @Data.Collections.reverse().slice(0, 50)
       @Render()
     )
 

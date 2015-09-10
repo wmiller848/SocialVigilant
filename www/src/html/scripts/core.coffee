@@ -38,6 +38,7 @@ class window.Core extends window.Malefic.Core
         total_hits = 0
         running_interactions = 0
         total_interactions = 0
+        completed_interactions = 0
         canvas = @Q('[data-id="sv:context:ui:graph"]')
         setInterval( =>
           next = Math.random()
@@ -77,8 +78,10 @@ class window.Core extends window.Malefic.Core
           names_p2 = ['Of', 'For', 'Warrior', 'Hero', 'Evil', 'Quest', 'So']
           names_p3 = ['Doom', 'Hire', 'McGee', 'Man', 'Boss', 'Seeker', 'Big']
 
-          if current_interactions > 0
-            console.log('wtf..')
+          len = parseInt(total_interactions) - completed_interactions
+          return if len <= 0
+
+          for i in [0..len]
             @Broker.Trigger('data:collections:add', {
               network_icon: networks[parseInt(Math.random() * networks.length)],
               handle: names_p1[parseInt(Math.random() * names_p1.length)] + concaters[parseInt(Math.random() * concaters.length)] +
@@ -86,6 +89,7 @@ class window.Core extends window.Malefic.Core
                       names_p3[parseInt(Math.random() * names_p3.length)],
               content: @Random(Math.random() * 256)
             })
+            completed_interactions++
 
         , time_slice)
     )

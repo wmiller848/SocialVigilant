@@ -42,7 +42,7 @@ class window.SelectorsWidget extends window.Malefic.View
     #@Hide()
 
     @Broker.On('widget:selectors:set', (selectors) =>
-      console.log('!!Selectors:Set!!', selectors)
+      # console.log('!!Selectors:Set!!', selectors)
       @Data.Model.Selectors = selectors
       list = _.reduce(selectors, (memo, selector) ->
         memo.push(selector.key)

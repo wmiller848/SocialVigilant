@@ -42,7 +42,7 @@ class window.AccountsWidget extends window.Malefic.View
     #@Hide()
 
     @Broker.On('widget:accounts:set', (accounts) =>
-      console.log('!!Accounts:Set!!', accounts)
+      # console.log('!!Accounts:Set!!', accounts)
       @Data.Model.Accounts = accounts
       list = _.reduce(accounts, (memo, account) ->
         memo.push(account.handle)
