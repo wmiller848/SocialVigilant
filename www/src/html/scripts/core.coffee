@@ -41,7 +41,7 @@ class window.Core extends window.Malefic.Core
         completed_interactions = 0
         canvas = @Q('[data-id="sv:context:ui:graph"]')
         setInterval( =>
-          next = Math.random()
+          next = Math.random() / 3.0
           up_or_down = 1
           if Math.random() > 0.4
             up_or_down = -1
@@ -74,20 +74,28 @@ class window.Core extends window.Malefic.Core
 
           networks = ['images/twitter.png', 'images/facebook.png']
           concaters = ['', '-', '_', 'x', '']
-          names_p1 = ['Llama', 'Bob', 'Shitz', 'Cobra', 'Grim', 'Nicknak', 'Tits']
-          names_p2 = ['Of', 'For', 'Warrior', 'Hero', 'Evil', 'Quest', 'So']
-          names_p3 = ['Doom', 'Hire', 'McGee', 'Man', 'Boss', 'Seeker', 'Big']
+          names_p1 = ['Llama', 'Bob', 'Shitz', 'Cobra', 'Grim', 'Nicknak', 'Tits', 'Dick']
+          names_p2 = ['Of', 'For', 'Warrior', 'Hero', 'Evil', 'Quest', 'So', 'Eater']
+          names_p3 = ['Doom', 'Hire', 'McGee', 'Man', 'Boss', 'Seeker', 'Big', 'Pimp']
 
           len = parseInt(total_interactions) - completed_interactions
           return if len <= 0
 
-          for i in [0..len]
+          shuffle = (text, char=' ') ->
+            text_array = text.split('')
+            n = parseInt(text_array.length * 0.25)
+            while n--
+              text_array.splice(Math.floor(Math.random() * (text_array.length+1)), 0, char)
+            text_array.join('')
+
+          for i in [0...len]
             @Broker.Trigger('data:collections:add', {
               network_icon: networks[parseInt(Math.random() * networks.length)],
               handle: names_p1[parseInt(Math.random() * names_p1.length)] + concaters[parseInt(Math.random() * concaters.length)] +
                       names_p2[parseInt(Math.random() * names_p2.length)] + concaters[parseInt(Math.random() * concaters.length)] +
                       names_p3[parseInt(Math.random() * names_p3.length)],
-              content: @Random(Math.random() * 256)
+              interactions: {content: shuffle(@Random(Math.random() * 256)).substring(0,22) + '..'} for a in [0..(Math.random()*5)],
+              time: new Date()
             })
             completed_interactions++
 
