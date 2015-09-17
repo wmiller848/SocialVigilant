@@ -19,6 +19,14 @@ class window.CollectionsWidget extends window.Malefic.View
     'Collections': [],
     'Model':
       'Collections': null
+      'Interactions': [
+        {
+          'content': 'blah blahs'
+        }
+      ]
+      'Slide': 0
+      'PanelView': 'inherit'
+      'PanelViewHeight': 0
 
   Helpers:
     'log': ->
@@ -36,6 +44,8 @@ class window.CollectionsWidget extends window.Malefic.View
 
   Elements:
     'expand': '[data-id="toolbar:collections:expand"]'
+    'collection': '[data-id="toolbar:collections:collection"]'
+    'panel': '[data-id="toolbar:collections:panel"]'
 
   Loaded: ->
     @Log('CollectionsWidget Widget Loaded')
@@ -61,6 +71,29 @@ class window.CollectionsWidget extends window.Malefic.View
 
     upCaret = '&#9650;'
     downCaret = '&#9660;'
+
+    @Data.Model.PanelViewHeight = @Elements.panel?.offsetHeight
+    @Elements.collection?.on('click', (e) =>
+      return if e.isTriggered
+      e.preventDefault()
+      e.stopPropagation()
+      e.isTriggered = true
+
+      dist = 50
+      fps = 30
+      speed = 2
+      step = dist / (fps / speed)
+      tick = =>
+        @Data.Model.Slide += step
+        if @Data.Model.Slide < dist
+          setTimeout(tick, 1000 / fps)
+        else
+          @Data.Model.Slide = dist
+          @Data.Model.PanelView = 'inherit'
+        @Render()
+      tick()
+      return false
+    )
 
     @Elements.expand?.on('click', (e) =>
       return if e.isTriggered
